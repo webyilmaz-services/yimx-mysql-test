@@ -2,19 +2,21 @@ import "stdsx"
 import "jdbc"
 
 
-
+// Create Connection.
+// connection string jdbc:mysql://SERVERIP:3306/tablename , username, pwd
 connection = getConnection("jdbc:mysql://localhost:3306/mysql","root","root")
+// Creating Statement
 statement = connection.createStatement()
 statement.setQueryTimeout(30)
 
-statement.executeUpdate("drop table if exists person")
-statement.executeUpdate("create table person (id integer, name string)")
-statement.executeUpdate("insert into person values(1, 'Samet')")
-statement.executeUpdate("insert into person values(2, 'Yilmaz')")
+// execute: INSERT YIMX and MYSQLTEST on person table.
+statement.executeUpdate("insert into person values(1, 'YIMX')")
+statement.executeUpdate("insert into person values(2, 'MYSQLTEST')")
 
+//Select data on person table
 rs = statement.executeQuery("select * from person")
 while(rs.next()) {
-  
+  //printing data
   println "name = " + rs.getString("name")
   println "id = " + rs.getInt("id")
 }
